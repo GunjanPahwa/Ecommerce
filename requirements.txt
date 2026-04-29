@@ -6,3 +6,5 @@ seaborn
 python-dotenv
 ipykernel
 pyodbc
+plotly
+scikit-learn
