@@ -8,3 +8,6 @@ ipykernel
 pyodbc
 plotly
 scikit-learn
+groq
+streamlit
+ChatGroq
