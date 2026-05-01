@@ -1,5 +1,4 @@
-# Ignore all HTML files in the language statistics
-*.html linguist-detectable=false
-
-# Alternatively, mark a specific folder (like assets) as generated
+outputs/** linguist-generated=true
 assets/** linguist-generated=true
+
+*.html linguist-detectable=false
