@@ -2,11 +2,14 @@
 
 An interactive data analytics app that quantifies how shipping delays impact business health and customer satisfaction for Brazil's largest e-commerce marketplace.
 
+
 Live Demo: https://ecommercedashboard12.streamlit.app/
+
 
 Overview
 
 This project audits delivery performance across 100,000+ orders from the Olist Brazilian E-Commerce dataset (2017–2018). It surfaces which sellers, states, and time periods are driving late deliveries — and quantifies the revenue and review score impact.
+
 
 📈 Business Impact & Decision Support:
 
