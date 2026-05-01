@@ -5,14 +5,13 @@ from groq import Groq
 import os
 from dotenv import load_dotenv
 
-# ── Config ────────────────────────────────────────────────────────────────────
+
 st.set_page_config(
     page_title="Olist Delivery Audit",
     page_icon="📦",
     layout="wide",
 )
 
-# ── Load data ─────────────────────────────────────────────────────────────────
 @st.cache_data
 def load_data():
     seller_df   = pd.read_csv("outputs/pbi_seller_summary.csv")
@@ -24,7 +23,7 @@ def load_data():
 
 seller_df, state_df, monthly_df, bucket_df, business_summary = load_data()
 
-# ── Computed metrics ───────────────────────────────────────────────────────────
+
 total_orders = seller_df["total_orders"].sum()
 late_orders  = seller_df["late_orders"].sum()
 late_rate    = late_orders / total_orders * 100
@@ -36,7 +35,7 @@ def get_metric(label):
 
 direct_at_risk = get_metric("Estimated Direct Revenue at Risk")
 
-# ── Groq client ───────────────────────────────────────────────────────────────
+
 load_dotenv()
 groq_key = os.getenv("GROQ_API_KEY") or st.secrets.get("GROQ_API_KEY", None)
 client = Groq(api_key=groq_key) if groq_key else None
@@ -83,7 +82,7 @@ def ask_groq(messages):
     )
     return response.choices[0].message.content
 
-# ── Sidebar ───────────────────────────────────────────────────────────────────
+
 with st.sidebar:
     st.title("📦 Olist Audit")
     st.info("Brazilian E-Commerce Analysis\n2017 – 2018")
@@ -94,7 +93,7 @@ with st.sidebar:
     st.divider()
     st.caption("Built with SQL + Python + Streamlit")
 
-# ── Page 1 — Executive Summary ────────────────────────────────────────────────
+
 if page == "Executive Summary":
     st.header("Executive Summary")
 
@@ -149,7 +148,7 @@ if page == "Executive Summary":
         fig_b.update_layout(margin=dict(l=0, r=0, t=10, b=0))
         st.plotly_chart(fig_b, use_container_width=True)
 
-# ── Page 2 — Seller Intelligence ──────────────────────────────────────────────
+
 elif page == "Seller Intelligence":
     st.header("Seller Intelligence")
 
@@ -206,7 +205,7 @@ elif page == "Seller Intelligence":
                 use_container_width=True,
             )
 
-# ── Page 3 — Geographic Analysis ──────────────────────────────────────────────
+
 elif page == "Geographic Analysis":
     st.header("Geographic Logistics Analysis")
 
@@ -253,7 +252,7 @@ elif page == "Geographic Analysis":
                 st.dataframe(state_df, hide_index=True, use_container_width=True)
 
 
-# ── Page 4 — Power BI Dashboard ───────────────────────────────────────────────
+
 elif page == "Power BI Dashboard":
     st.header("Power BI Dashboard")
     st.caption("Olist Delivery Performance Audit — exported from Power BI")
@@ -279,7 +278,7 @@ elif page == "Power BI Dashboard":
             if i < len(image_files):
                 st.divider()
 
-# ── Page 5 — Ask the Data ─────────────────────────────────────────────────────
+
 elif page == "Ask the Data":
     st.header("AI Data Assistant")
     st.caption("Natural language queries grounded in the Olist audit data.")
