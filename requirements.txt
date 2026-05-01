@@ -1,13 +1,6 @@
 pandas
 numpy
-sqlalchemy
-matplotlib
-seaborn
-python-dotenv
-ipykernel
-pyodbc
 plotly
-scikit-learn
+python-dotenv
 groq
 streamlit
-ChatGroq
