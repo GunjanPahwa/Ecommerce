@@ -236,16 +236,14 @@ elif page == "Geographic Analysis":
             st.subheader("Freight Cost vs. Late Rate")
             if freight_col:
                 fig_fr = px.scatter(
-                    state_df,
-                    x=freight_col, y=late_col,
-                    text=state_col,
-                    size=orders_col if orders_col else None,
-                    color=late_col,
-                    color_continuous_scale="RdYlGn_r",
-                    labels={freight_col: "Avg Freight Cost", late_col: "Late Rate (%)"},
+                    state_df, 
+                    x="avg_freight_value",  # Use the exact new column name
+                    y="late_rate_pct", 
+                    text="customer_state",
+                    size="total_orders",
+                    color="late_rate_pct",
+                    color_continuous_scale="RdYlGn_r"
                 )
-                fig_fr.update_traces(textposition="top center")
-                fig_fr.update_layout(height=500, margin=dict(l=0, r=0, t=10, b=0), coloraxis_showscale=False)
                 st.plotly_chart(fig_fr, use_container_width=True)
             else:
                 st.warning("Freight cost column not found in state data.")
